@@ -8,6 +8,10 @@ import {
 
 //import components
 import NavBar from "./NavBar";
+import Homepage from "./HomePage";
+import CompanyList from "./CompanyList";
+import CompanyDetail from "./CompanyDetail";
+import JobList from "./JobList";
 
 function App() {
   return (
@@ -15,10 +19,10 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" />
-          <Route path="/companies" />
-          <Route path="/companies/:handle" />
-          <Route path="/jobs" />
+          <Route path="/" element={<Homepage />}/>
+          <Route path="/companies" element={<CompanyList />} />
+          <Route path="/companies/:handle" element={<CompanyDetail />} />
+          <Route path="/jobs" element={<JobList />} />
         </Routes>
       </BrowserRouter>
     </div>

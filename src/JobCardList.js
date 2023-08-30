@@ -1,4 +1,5 @@
 import React from "react";
+import JobCard from "./JobCard";
 
 /**Displays list of job card
  *
@@ -20,6 +21,5 @@ function JobCardList({jobs}){
     </div>
   )
 }
-
 
 export default JobCardList;

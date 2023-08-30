@@ -1,38 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CompanyCard from "./CompanyCard";
-import JoblyApi from "./JoblyApi";
+import SearchForm from "./SearchForm";
+import JoblyApi from "./api";
 import LoadingSpinner from "./LoadingSpinner";
 
-function CompanyList(){
-  const [companies, setCompanies] = useState(null)
+function CompanyList() {
+  const [companies, setCompanies] = useState(null);
 
-  useEffect(function fetchCompaniesOnMount(){
-    console.log("FetchCompanyOnMount Function runs")
-    searchCompany()
-  })
+  useEffect(function fetchCompaniesOnMount() {
+    searchCompany();
+  }, []);
 
-  async function searchCompany(handle){
-    console.log("SearchJob function runs")
-   let companies = await JoblyApi.getCompanies(handle);
-   setCompanies(companies)
+  async function searchCompany(searchTerm) {
+    let companies = await JoblyApi.getCompanies(searchTerm);
+    console.log(`searchedCompanies: ${companies}`);
+    setCompanies(companies);
   }
 
-  if(!companies) return <LoadingSpinner/>
+  if (!companies) return <LoadingSpinner />;
 
-  return(
+  return (
     <div className="Companylist">
-      <Search/>
-      {companies.map(company=>{
-        <CompanyCard
-          key = {company.handle}
-          name = {company.name}
-          description = {company.description}
-          logo = {company.logo}
-        />
-      })}
+      <SearchForm SearchFilter={searchCompany} />
+      <div className="CompanyList-companies">
+        {companies.map(company => (
+          <CompanyCard
+            key={company.handle}
+            handle={company.handle}
+            name={company.name}
+            description={company.description}
+            logo={company.logoUrl}
+          />
+        ))}
+      </div>
     </div>
-  )
+  );
 }
-
 
 export default CompanyList;
