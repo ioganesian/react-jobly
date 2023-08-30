@@ -1,4 +1,5 @@
 import React from "react";
+import "./JobCard.css";
 
 /**Renders a single job card
  *
@@ -12,10 +13,10 @@ import React from "react";
 function JobCard({ id, title, company, salary, equity }) {
   return (
     <div className="JobCard">
-      {title}
-      {company}
-      {salary}
-      {equity}
+      <p><b>{title}</b></p>
+      <p>{company}</p>
+      <p>Salary: {salary}</p>
+      <p>Equity: {equity}</p>
     </div>
   );
 }

@@ -52,11 +52,9 @@ class JoblyApi {
     return res.jobs;
   }
 
-  //TODO: be more descriptive ...
-  /** Get array of companies with optional filter */
+  /** Get array of companies with optional nameLike filter */
   static async getCompanies(nameLike) {
     let res = await this.request(`companies`, { nameLike });
-    console.log(`res.companies in getCompanies: ${res.companies}`);
     return res.companies;
   }
 

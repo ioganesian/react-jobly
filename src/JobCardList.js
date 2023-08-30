@@ -1,5 +1,6 @@
 import React from "react";
 import JobCard from "./JobCard";
+import "./JobCardList.css";
 
 /**Renders multiple job cards
  *
@@ -8,25 +9,24 @@ import JobCard from "./JobCard";
  *
  * State: None
  *
- * JobList/CompanyDetail-->JobCardList --> JobCard
+ * JobList/CompanyDetail --> JobCardList --> JobCard
  *
  */
+
 function JobCardList({ jobs }) {
- //TODO: FIX THE destructuring of the props
+
   return (
     <div className="JobCardList">
-
-      {jobs.map(({id,title,company,salary,equity}) => (
+      {jobs.map(({ id, title, company, salary, equity }) => (
         <JobCard
-          key={job.id}    //key = {id}
-          id={job.id}   //key = {id}
-          title={job.title}
-          company={job.company}
-          salary={job.salary}
-          equity={job.equity}
+          key={id}
+          id={id}
+          title={title}
+          company={company}
+          salary={salary}
+          equity={equity}
         />
       ))}
-
     </div>
   );
 }

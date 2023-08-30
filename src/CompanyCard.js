@@ -1,5 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom"
+import "./CompanyCard.css";
+
 /**Renders a single company card
  *
  * Props: {handle, name, description, logo}
@@ -9,14 +11,16 @@ import {Link} from "react-router-dom"
  * CompanyList --> CompanyCard
  *
  */
-//TODO: classname needs to be changed , 19 could be more simple 
+
 function CompanyCard({ handle, name, description, logo }) {
   return (
-    <Link className="CompanyCard-card" to={`/companies/${handle}`}>
-    <div className="CompanyCard">
+    <Link className="CompanyCard" to={`/companies/${handle}`}>
+    <div className="CompanyCard-card">
       {name}
       {description}
-      <img src={`${logo}`} alt={name} />
+      <div className="CompanyCard-img">
+        <img src={logo} alt={name} />
+      </div>
     </div>
     </Link>
   );

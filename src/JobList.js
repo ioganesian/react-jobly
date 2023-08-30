@@ -12,7 +12,7 @@ import LoadingSpinner from "./LoadingSpinner";
  *
  * JobList--> SearchForm & JobCardList
  */
-//TODO: doc string for searchJob, line 33 searchFilter should be lowercase
+
 function JobList() {
   const [jobs, setJobs] = useState(null);
 
@@ -21,6 +21,7 @@ function JobList() {
     searchJob();
   }, []);
 
+  /** Makes API request to filter jobs by search term */
   async function searchJob(title) {
     const jobs = await JoblyApi.getJobs(title);
     setJobs(jobs);
@@ -30,7 +31,7 @@ function JobList() {
 
   return (
     <div className="JobList">
-      <SearchForm SearchFilter={searchJob} />
+      <SearchForm searchFilter={searchJob} />
       {jobs.length ?
         (<JobCardList jobs={jobs} />) : <div>Jobs not found</div>
       }

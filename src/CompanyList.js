@@ -3,16 +3,18 @@ import CompanyCard from "./CompanyCard";
 import SearchForm from "./SearchForm";
 import JoblyApi from "./api";
 import LoadingSpinner from "./LoadingSpinner";
+import "./CompanyList.css";
 
 
 /** Render a full list of companies
  *
- * Props:None
+ * Props: None
  *
  * State: companies [{handle,description, name....},{comp2}, {comp3}]
  *
  * CompanyList --> SearchForm & CompanyCard
  */
+
 function CompanyList() {
   const [companies, setCompanies] = useState(null);
 
@@ -21,20 +23,17 @@ function CompanyList() {
     searchCompany();
   }, []);
 
-  //TODO: doctstring for this searchCompany
+  /** Makes API request to filter companies by search term */
   async function searchCompany(searchTerm) {
-
-    let companies = await JoblyApi.getCompanies(searchTerm);
-
+    const companies = await JoblyApi.getCompanies(searchTerm);
     setCompanies(companies);
   }
 
   if (!companies) return <LoadingSpinner />;
 
-  //TODO: searchFilter in line 36 should be lowercase ALSO line 35 CompanyList
   return (
     <div className="Companylist">
-      <SearchForm SearchFilter={searchCompany} />
+      <SearchForm searchFilter={searchCompany} />
       {companies.length ?
         (<div className="CompanyList-companies">
           {companies.map(company => (
@@ -46,7 +45,7 @@ function CompanyList() {
               logo={company.logoUrl}
             />
           ))}
-        </div>) : <div> Companies not found</div>}
+        </div>) : <div>Companies not found</div>}
     </div>
   );
 }
