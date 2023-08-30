@@ -22,3 +22,19 @@ function JobCard({ id, title, company, salary, equity }) {
 }
 
 export default JobCard;
+
+/** BACKEND ENDPOINT FOR JOB APPLICATION */
+
+/** POST /[username]/jobs/[id]  { state } => { application }
+ *
+ * Returns {"applied": jobId}
+ *
+ * Authorization required: admin or same-user-as-:username
+ * */
+
+// router.post("/:username/jobs/:id", ensureCorrectUserOrAdmin, async function (req, res, next) {
+//   const jobId = +req.params.id;
+//   await User.applyToJob(req.params.username, jobId);
+//   return res.json({ applied: jobId });
+// });
+
