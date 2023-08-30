@@ -1,5 +1,7 @@
 import React from "react";
 
+/** Renders a Loading message */
+
 function LoadingSpinner() {
   return (
     <div>

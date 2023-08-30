@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 
+//TODO: fill in docstring.... props/states/flow
+
+/** Links to multiple routes: homepage, companies, jobs */
 function NavBar() {
   return (
     <nav className="NavBar">
