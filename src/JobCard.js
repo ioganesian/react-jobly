@@ -1,12 +1,12 @@
 import React from "react";
 
-function JobCard({job}) {
+function JobCard({id, title, company, salary, equity }) {
   return (
     <div className="JobCard">
-      {job.title}
-      {job.company}
-      {job.salary}
-      {job.equity}
+      {title}
+      {company}
+      {salary}
+      {equity}
     </div>
   )
 }
