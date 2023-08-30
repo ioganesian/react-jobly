@@ -1,0 +1,11 @@
+.NavBar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  background-color: rgb(167, 167, 167);
+  border: 3px solid black;
+}
+
+.NavBar-right {
+  display: flex;
+}
