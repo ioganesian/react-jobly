@@ -7,6 +7,8 @@ import Homepage from "./Homepage";
 import CompanyList from "./CompanyList";
 import CompanyDetail from "./CompanyDetail";
 import JobList from "./JobList";
+import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
 
 function RouteList() {
   return (
@@ -15,7 +17,7 @@ function RouteList() {
 
         <Route path="/" element={<Homepage />} />
 
-        {currentUser &&
+        {user &&
           <>
             <Route
               path="/companies"
@@ -32,7 +34,7 @@ function RouteList() {
           </>
         }
 
-        {!currentUser &&
+        {!user &&
           <>
             <Route path="/login" element={<LoginForm />} />
 
