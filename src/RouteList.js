@@ -10,34 +10,46 @@ import JobList from "./JobList";
 
 function RouteList() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={<Homepage />}
-      />
+    <div>
+      {currentUser &&
+        <>
+          <Routes>
 
-      <Route
-        path="/companies"
-        element={<CompanyList />}
-      />
+            <Route
+              path="/"
+              element={<Homepage />}
+            />
+            <Route
+              path="/companies"
+              element={<CompanyList />}
+            />
+            <Route
+              path="/companies/:handle"
+              element={<CompanyDetail />}
+            />
+            <Route
+              path="/jobs"
+              element={<JobList />}
+            />
+          </>
+      }
 
-      <Route
-        path="/companies/:handle"
-        element={<CompanyDetail />}
-      />
+          {!currentUser &&
+            <>
+              <Route path="/" element={<Homepage />} />
 
-      <Route
-        path="/jobs"
-        element={<JobList />}
-      />
+              <Route path="/login" element={<LoginForm />} />
 
-      <Route
-        path="*"
-        element={<Navigate to="/" />}
-      />
-    </Routes>
+              <Route path="/signup" element={<SignupForm />} />
+            </>
+          }
+
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+    </div>
   );
 }
+
 
 export default RouteList;
 
