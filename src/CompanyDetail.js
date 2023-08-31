@@ -33,7 +33,7 @@ function CompanyDetail() {
     }
     fetchCompany();
   }, []);
-  
+
   if (error) return <div> Company not found </div>;
   if (!company) return <LoadingSpinner />;
 

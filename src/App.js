@@ -15,7 +15,8 @@ import NavBar from "./NavBar";
 */
 
 function App() {
-  
+  const [user, setUser] = useState(null); //correct state?
+
   return (
     <div className="App">
       <BrowserRouter>
