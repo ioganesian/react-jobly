@@ -16,6 +16,7 @@ import NavBar from "./NavBar";
 
 function App() {
   const [user, setUser] = useState(null); //correct state?
+  const [token, setToken] = useState()
 
   return (
     <div className="App">
