@@ -11,10 +11,10 @@ import JobList from "./JobList";
 function RouteList() {
   return (
     <div>
+      <Routes>
+
       {currentUser &&
         <>
-          <Routes>
-
             <Route
               path="/"
               element={<Homepage />}
@@ -31,7 +31,7 @@ function RouteList() {
               path="/jobs"
               element={<JobList />}
             />
-          </>
+         </>
       }
 
           {!currentUser &&
