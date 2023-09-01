@@ -8,7 +8,7 @@ import "./LoginForm.css";
  *
  * State: formData
  *
- * App --> RouteList --> LoginForm ?
+ * App --> RouteList --> LoginForm
  */
 
 function LoginForm({ login }) {
@@ -22,7 +22,6 @@ function LoginForm({ login }) {
   /** Update form */
   function handleChange(evt) {
     const { name, value } = evt.target;
-    console.log("name & value", `${name} ${value}`);
     setFormData(formData => ({
       ...formData,
       [name]: value,
@@ -34,7 +33,6 @@ function LoginForm({ login }) {
     evt.preventDefault();
     try {
       await login(formData);
-      // setFormData(formData);
       navigate("/")
     } catch (errs) {
       setErrors(errs);
@@ -46,19 +44,19 @@ function LoginForm({ login }) {
     <div className="LoginForm">
       <div className="LoginForm-login">Log in</div>
       <form onSubmit={handleSubmit} className="LoginForm-form">
-        <label htmlFor="username">Username </label>
+        <label>Username</label>
         <input
           name="username"
           value={formData.username}
           onChange={handleChange}
         />
-        <label htmlFor="password">Password </label>
+        <label>Password</label>
         <input
           name="password"
           value={formData.password}
           onChange={handleChange}
         />
-        <button onClick={handleSubmit}> Submit </button>
+        <button onClick={handleSubmit}>Submit</button>
       </form>
     </div>
   );
