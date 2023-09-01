@@ -9,78 +9,58 @@ import userContext from "./userContext";
 
 /** Main Application with router
  *
- * Props:None
+ * Props: None
  *
  * State:
- * - currUser
+ * - currUser ...?
  * - token
  *
- *App --> Homepage
+ * App --> Homepage
 */
 
 
 function App() {
   const [currUser, setCurrUser] = useState({ data: null });
-  const [token, setToken] = useState(JoblyApi.token);
-  // {
-  //   "user": {
-  //     "username": "user",
-  //     "firstName": "first",
-  //     "lastName": "last",
-  //     "email": "email@email.com",
-  //     "isAdmin": true,
-  //     "applications": []
-  //   }
-  // }
-  // console.log(token);
-  useEffect(function getUserInfo() {
-    console.log(`ENTERED USEEFFECT`);
+  const [token, setToken] = useState(null);
+  // JoblyApi.token
+
+  /** Checks state on token update to set current user */
+  useEffect(function fetchUserData() {
+    //TODO: more descriptive ie onTokenChange
     async function getCurrUser() {
       if (token) {
-        console.log(`USER token APP.JS: ${token}`);
         try {
-
           let { username } = decode(token);
-          console.log("USERNAME>>>", username)
-
+          JoblyApi.token = token;
           let user = await JoblyApi.getUserData(username);
-          console.log("USER>>>>", user)
-          
-          JoblyApi.token = token
-
-
-          setCurrUser({data: user});
-
+          setCurrUser({ data: user });
         } catch (error) {
-          console.log("Error here APP.JS");
           setCurrUser({ data: null });
         }
       } else {
-        console.log(`NO USER token APP.js: ${token}`);
         setCurrUser({ data: null });
       }
     }
     getCurrUser();
   }, [token]);
 
-  // console.log(user, token);
-
+  /** Sets token to API response from login request  */
   async function login(loginData) {
     let token = await JoblyApi.login(loginData);
     setToken(token);
   }
 
+  /** Clears currUser on logout */
   async function logout() {
     setCurrUser({ data: null });
     setToken(null);
   }
 
+  /** Sets token to API response from signup request */
   async function signup(signUpData) {
     let token = await JoblyApi.signUp(signUpData);
     setToken(token);
   }
-
-  console.log(`currUser: ${currUser}`);
 
   return (
     <userContext.Provider
@@ -95,5 +75,6 @@ function App() {
     </userContext.Provider>
   );
 }
+//TODO: currUser -> userwrapper?
 
 export default App;

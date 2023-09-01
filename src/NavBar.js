@@ -17,7 +17,6 @@ function NavBar({ logout }) {
   const { currUser } = useContext(userContext);
 
   /** NavBar to return if no user logged in */
-
   function loggedOutNavBar() {
     return (
       <div className="LoggedOutNavBar">
@@ -32,7 +31,6 @@ function NavBar({ logout }) {
   }
 
   /** NavBar to return if user logged in */
-
   function loggedInNavBar() {
     return (
         <div className="LoggedInNavBar">
@@ -43,7 +41,7 @@ function NavBar({ logout }) {
             Jobs
           </Link>
           <Link to="/" onClick={logout}>
-            Logout {currUser.username}
+            Log out {currUser.username}
           </Link>
         </div>
     );

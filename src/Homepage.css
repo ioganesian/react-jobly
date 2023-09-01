@@ -1,0 +1,17 @@
+.Homepage {
+  display: flex;
+  flex-direction: column;
+  padding: 30%;
+  color: rgba(255, 255, 255, 0.744);
+  /* font-size: 32px; */
+  text-shadow: 5px 5px 5px black;;
+}
+
+.Homepage-jobly {
+  font-size: 48px;
+}
+
+.Homepage-user {
+  font-size: 32px;
+  margin-top: .5em;
+}

@@ -10,13 +10,21 @@ import JobList from "./JobList";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 
+/** Route list
+ *
+ * Props: currUser (context)
+ *        login function passed from parent
+ *        signup function passed from parent
+ *
+ * State: none
+ */
+
 function RouteList({ currUser, login, signup }) {
-  console.log(`USER in ROUTELIST: ${currUser}`);
   return (
     <div>
       <Routes>
 
-        <Route path="/" element={<Homepage />} />
+      <Route path="/" element={<Homepage />} />
 
         {!currUser &&
           <>

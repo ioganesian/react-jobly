@@ -10,6 +10,7 @@ import "./JobCard.css";
  * JobCardList --> JobCard
  *
  */
+
 function JobCard({ id, title, company, salary, equity }) {
   return (
     <div className="JobCard">

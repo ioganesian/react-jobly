@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import "./SearchForm.css";
 
 /** Searches jobs or companies based on passed filter
  *
- * Props: searchFilter that is passed down from parent
+ * Props: searchFilter passed down from parent
  *  ex. searchJob()
  *
  * State: searchTerm
@@ -26,7 +27,7 @@ function SearchForm({ searchFilter }) {
 
   return (
     <div className="SearchForm">
-      <form onSubmit={handleSubmit}>
+      <form className="SearchForm-form" onSubmit={handleSubmit}>
         <input
           name="searchTerm"
           value={searchTerm}

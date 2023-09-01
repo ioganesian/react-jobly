@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
+import "./LoginForm.css";
 
 /** Login form.
  *
- * Props: login function passed from parent.
+ * Props: login function passed from parent
  *
  * State: formData
  *
- * ??? --> LoginForm
+ * App --> RouteList --> LoginForm ?
  */
 
 function LoginForm({ login }) {
@@ -35,18 +36,16 @@ function LoginForm({ login }) {
       await login(formData);
       // setFormData(formData);
       navigate("/")
-
     } catch (errs) {
       setErrors(errs);
     }
-
   }
-
+  //TODO: display errs
 
   return (
     <div className="LoginForm">
-
-      <form onSubmit={handleSubmit}>
+      <div className="LoginForm-login">Log in</div>
+      <form onSubmit={handleSubmit} className="LoginForm-form">
         <label htmlFor="username">Username </label>
         <input
           name="username"

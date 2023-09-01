@@ -1,0 +1,36 @@
+.SignupForm {
+  /* border: 3px solid lime; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  width: 50%;
+  margin: 3em auto;
+}
+
+.SignupForm-signup {
+  font-size: 32px;
+  color: rgba(255, 255, 255, 0.903);
+  text-shadow: 5px 5px 5px black;
+  margin-bottom: .4em;
+}
+
+.SignupForm-form {
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  padding: .5em 5em;
+  border-radius: 5px;
+}
+
+.SignupForm input {
+  padding: .5em;
+}
+
+.SignupForm button {
+  background-color: rgb(34, 82, 239);
+  color: white;
+  border-radius: 5px;
+  border: 0;
+  margin: .7em;
+  padding: .5em;
+}

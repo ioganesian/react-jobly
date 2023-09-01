@@ -1,15 +1,18 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
+import "./SignupForm.css";
 
 // /** User signup form.
 //  *
-//  * Props: signup function passed from parent.
+//  * Props: signup function passed from parent
 //  *
 //  * State: formData
 //  *
-//  * ??? --> SignupForm
+//  * App --> RouteList --> SignupForm
 //  */
 
 function SignupForm({ signup }) {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -18,10 +21,10 @@ function SignupForm({ signup }) {
     email: ""
   });
   const [errors, setErrors] = useState([]);
+
   /** Update form */
   function handleChange(evt) {
-    const {name, value} = evt.target;
-    console.log("name & value", `${name} ${value}` )
+    const { name, value } = evt.target;
     setFormData(formData => ({
       ...formData,
       [name]: value,
@@ -33,23 +36,26 @@ function SignupForm({ signup }) {
     evt.preventDefault();
     try {
       await signup(formData);
-      setFormData(formData);
+      navigate("/");
+      // setFormData(formData);
     } catch (errs) {
       setErrors(errs);
     }
   }
 
+  //TODO: for vs htmlFor
   return (
     <div className="SignupForm">
-      <form onSubmit={handleSubmit}>
+      <div className="SignupForm-signup">Sign Up</div>
+      <form className="SignupForm-form" onSubmit={handleSubmit}>
         <label htmlFor="username">Username </label>
         <input
           name="username"
           value={formData.username}
           onChange={handleChange}
         />
-          <label htmlFor="password">Password </label>
-          <input
+        <label htmlFor="password">Password </label>
+        <input
           name="password"
           value={formData.password}
           onChange={handleChange}

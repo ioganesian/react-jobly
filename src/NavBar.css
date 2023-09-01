@@ -2,15 +2,14 @@
   display: flex;
   justify-content: space-between;
   padding: 1em;
-  background-color: rgb(199, 199, 199);
-  border: 3px solid black;
+  background-color: white;
 }
 
 .NavBar a {
-  padding: 0 .2em;
+  padding: 0 .4em;
   text-decoration: none;
 }
 
 .NavBar a:visited {
-  color: rgb(77, 77, 232);
+  color: rgb(169, 169, 169);
 }
