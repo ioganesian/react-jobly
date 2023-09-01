@@ -30,12 +30,9 @@ function App() {
   const [currUser, setCurrUser] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_KEY);
   const [hasLoaded, setHasLoaded] = useState(false);
-  //TODO: better name for hasloaded
-  console.log("TOKEN>>>", token);
-  console.log("TESTUSER>>>", currUser);
+
   /** Checks state on token update to set current user and hasLoaded */
   useEffect(function fetchUserDataOnTokenChange() {
-
     async function getCurrUserOnTokenChange() {
       if (token) {
         try {
@@ -44,37 +41,41 @@ function App() {
           let user = await JoblyApi.getUserData(username);
           setCurrUser(user);
           setHasLoaded(true);
-
         } catch (error) {
           setCurrUser(null);
           setHasLoaded(true);
-
         }
       } else {
         setCurrUser(null);
         setHasLoaded(true);
-
       }
     }
     getCurrUserOnTokenChange();
   }, [token]);
 
-  /** Sets token to API response from login request  */
+  /** Sets token to API response from login request
+  loginData = {username, password}
+  */
   async function login(loginData) {
     let token = await JoblyApi.login(loginData);
     setToken(token);
   }
 
   /** Clears currUser and hasLoaded on logout */
-  //TODO: 71 & 73 gone
   async function logout() {
-    setCurrUser(null);
     setToken(null);
-    setHasLoaded(true);
   }
 
-  /** Sets token to API response from signup request */
-  //TODO: what is signupData
+  /** Sets token to API response from signup request
+  signUpData = {
+  "username": "user",
+  "password": "password",
+  "firstName": "first",
+  "lastName": "last",
+  "email": "email@email.com",
+  "isAdmin": true
+  }
+  */
   async function signup(signUpData) {
     let token = await JoblyApi.signUp(signUpData);
     setToken(token);
