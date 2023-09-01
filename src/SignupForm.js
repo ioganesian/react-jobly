@@ -13,14 +13,19 @@ function SignupForm({ signup }) {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     email: ""
   });
   const [errors, setErrors] = useState([]);
   /** Update form */
   function handleChange(evt) {
-    setFormData(evt.target.value);
+    const {name, value} = evt.target;
+    console.log("name & value", `${name} ${value}` )
+    setFormData(formData => ({
+      ...formData,
+      [name]: value,
+    }));
   }
 
   /** Call parent function to signup */
@@ -37,37 +42,37 @@ function SignupForm({ signup }) {
   return (
     <div className="SignupForm">
       <form onSubmit={handleSubmit}>
-        <label for="username">Username </label>
+        <label htmlFor="username">Username </label>
         <input
           name="username"
           value={formData.username}
           onChange={handleChange}
         />
-          <label for="password">Password </label>
+          <label htmlFor="password">Password </label>
           <input
           name="password"
           value={formData.password}
           onChange={handleChange}
         />
-        <label for="firstname">First name </label>
+        <label htmlFor="firstName">First name </label>
         <input
-          name="firstname"
-          value={formData.firstname}
+          name="firstName"
+          value={formData.firstName}
           onChange={handleChange}
         />
-        <label for="lastname">Last name </label>
+        <label htmlFor="lastName">Last name </label>
         <input
-          name="lastname"
-          value={formData.lastname}
+          name="lastName"
+          value={formData.lastName}
           onChange={handleChange}
         />
-        <label for="email">Email </label>
+        <label htmlFor="email">Email </label>
         <input
           name="email"
           value={formData.email}
           onChange={handleChange}
         />
-        <button type="submit">Submit</button>
+        <button onClick={handleSubmit}>Submit</button>
       </form>
     </div>
   );

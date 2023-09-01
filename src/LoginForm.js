@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
 
 /** Login form.
  *
@@ -10,14 +11,21 @@ import React, { useState } from "react";
  */
 
 function LoginForm({ login }) {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
-    password: ""
+    password: "",
   });
   const [errors, setErrors] = useState([]);
+
   /** Update form */
   function handleChange(evt) {
-    setFormData(evt.target.value);
+    const { name, value } = evt.target;
+    console.log("name & value", `${name} ${value}`);
+    setFormData(formData => ({
+      ...formData,
+      [name]: value,
+    }));
   }
 
   /** Call parent function to filter */
@@ -25,29 +33,33 @@ function LoginForm({ login }) {
     evt.preventDefault();
     try {
       await login(formData);
-      setFormData(formData);
+      // setFormData(formData);
+      navigate("/")
+
     } catch (errs) {
       setErrors(errs);
     }
 
   }
 
+
   return (
     <div className="LoginForm">
-      <form onSubmit={login}>
-        <label for="username">Username </label>
+
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="username">Username </label>
         <input
           name="username"
           value={formData.username}
           onChange={handleChange}
         />
-          <label for="password">Password </label>
-          <input
+        <label htmlFor="password">Password </label>
+        <input
           name="password"
           value={formData.password}
           onChange={handleChange}
         />
-        <button type="submit">Submit</button>
+        <button onClick={handleSubmit}> Submit </button>
       </form>
     </div>
   );

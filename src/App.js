@@ -35,13 +35,21 @@ function App() {
   // console.log(token);
   useEffect(function getUserInfo() {
     console.log(`ENTERED USEEFFECT`);
-    async function getUser() {
+    async function getCurrUser() {
       if (token) {
         console.log(`USER token APP.JS: ${token}`);
         try {
+
           let { username } = decode(token);
+          console.log("USERNAME>>>", username)
+
           let user = await JoblyApi.getUserData(username);
-          setCurrUser(user);
+          console.log("USER>>>>", user)
+          
+          JoblyApi.token = token
+
+
+          setCurrUser({data: user});
 
         } catch (error) {
           console.log("Error here APP.JS");
@@ -52,7 +60,7 @@ function App() {
         setCurrUser({ data: null });
       }
     }
-    getUser();
+    getCurrUser();
   }, [token]);
 
   // console.log(user, token);
