@@ -38,44 +38,76 @@ class JoblyApi {
 
   // Individual API routes
 
-  /** Get user data by username. */
+  /** Get user data by username.
+   *
+   * res.user = { username, firstName, lastName, isAdmin, jobs }
+  */
   static async getUserData(username){
     let res = await this.request(`users/${username}`);
     return res.user;
   }
 
-  /** Login with username & password. */
+  /** Login with username & password.
+   *
+   * loginData = {username, password}
+  */
   static async login(loginData){
     let res = await this.request(`auth/token`, loginData, "post")
     return res.token;
   }
 
-  /** Register new user. */
+  /** Register new user.
+   *
+   * signUpData = {
+	 *"username": "user",
+	 *"password": "password",
+	 *"firstName": "first",
+	 *"lastName": "last",
+	 *"email": "email@email.com",
+	 *"isAdmin": true
+   * }
+   */
   static async signUp(signUpData){
     let res = await this.request(`auth/register`, signUpData, "post")
     return res.token;
   }
 
-  /** Edit user profile with form data. */
+  /** Edit user profile with form data.
+   *
+   * data : {username, firstName, lastName, email}
+   *
+   */
   static async editProfile(username, data){
     let res = await this.request(`users/${username}`, data, "patch")
     return res.user;
   }
 
-  /** Get details on a company by handle. */
+  /** Get details on a company by handle.
+   *
+   * res.company is { handle, name, description, numEmployees, logoUrl, jobs }
+   *   where jobs is [{ id, title, salary, equity }, ...]
+  */
   static async getCompany(handle) {
     let res = await this.request(`companies/${handle}`);
     // console.log()
     return res.company;
   }
 
-  /** Get array of jobs by title */
+  /** Get array of jobs by title
+   *
+   * res.jobs= {jobs:
+   * [{ id, title, salary, equity, companyHandle, companyName }]}
+   */
   static async getJobs(title) {
     let res = await this.request(`jobs`, { title });
     return res.jobs;
   }
 
-  /** Get array of companies with optional nameLike filter */
+  /** Get array of companies with optional nameLike filter
+   *
+   * res.companies= { companies:
+   * [ { handle, name, description, numEmployees, logoUrl }, ...] }
+   */
   static async getCompanies(nameLike) {
     let res = await this.request(`companies`, { nameLike });
     return res.companies;

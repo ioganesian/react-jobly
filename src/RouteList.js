@@ -1,7 +1,8 @@
 import {
   Routes,
   Route,
-  Navigate
+  Navigate,
+  useNavigate
 } from 'react-router-dom';
 import Homepage from "./Homepage";
 import CompanyList from "./CompanyList";
@@ -15,18 +16,24 @@ import SignupForm from "./SignupForm";
  * Props: currUser (context)
  *        login function passed from parent
  *        signup function passed from parent
+ *        
  *
  * State: none
  */
 
 function RouteList({ currUser, login, signup }) {
+  // const navigate = useNavigate();
+  // if (!hasLoaded) navigate("/");
+
+  // if(!hasLoaded) return null
+
   return (
     <div>
       <Routes>
 
-      <Route path="/" element={<Homepage />} />
+        <Route path="/" element={ <Homepage /> } />
 
-        {!currUser &&
+        {!currUser  &&
           <>
             <Route
               path="/login"
@@ -37,7 +44,7 @@ function RouteList({ currUser, login, signup }) {
           </>
         }
 
-        {currUser &&
+        {currUser  &&
           <>
             <Route
               path="/companies"

@@ -6,42 +6,57 @@ import NavBar from "./NavBar";
 import JoblyApi from "./api";
 import decode from "jwt-decode";
 import userContext from "./userContext";
+import useLocalStorage from "./useLocalStorage";
+import LoadingSpinner from "./LoadingSpinner";
+
+const TOKEN_KEY = "tokenKey";
+
+
 
 /** Main Application with router
  *
  * Props: None
  *
  * State:
- * - currUser ...?
+ * - currUser: { username, firstName, lastName, isAdmin, jobs }
  * - token
+ * - hasLoaded: Updates if user is authenticated
  *
  * App --> Homepage
 */
 
 
 function App() {
-  const [currUser, setCurrUser] = useState({ data: null });
-  const [token, setToken] = useState(null);
-  // JoblyApi.token
+  const [currUser, setCurrUser] = useState(null);
+  const [token, setToken] = useLocalStorage(TOKEN_KEY);
+  const [hasLoaded, setHasLoaded] = useState(false);
+  //TODO: better name for hasloaded
+  console.log("TOKEN>>>", token);
+  console.log("TESTUSER>>>", currUser);
+  /** Checks state on token update to set current user and hasLoaded */
+  useEffect(function fetchUserDataOnTokenChange() {
 
-  /** Checks state on token update to set current user */
-  useEffect(function fetchUserData() {
-    //TODO: more descriptive ie onTokenChange
-    async function getCurrUser() {
+    async function getCurrUserOnTokenChange() {
       if (token) {
         try {
           let { username } = decode(token);
           JoblyApi.token = token;
           let user = await JoblyApi.getUserData(username);
-          setCurrUser({ data: user });
+          setCurrUser(user);
+          setHasLoaded(true);
+
         } catch (error) {
-          setCurrUser({ data: null });
+          setCurrUser(null);
+          setHasLoaded(true);
+
         }
       } else {
-        setCurrUser({ data: null });
+        setCurrUser(null);
+        setHasLoaded(true);
+
       }
     }
-    getCurrUser();
+    getCurrUserOnTokenChange();
   }, [token]);
 
   /** Sets token to API response from login request  */
@@ -50,31 +65,42 @@ function App() {
     setToken(token);
   }
 
-  /** Clears currUser on logout */
+  /** Clears currUser and hasLoaded on logout */
+  //TODO: 71 & 73 gone
   async function logout() {
-    setCurrUser({ data: null });
+    setCurrUser(null);
     setToken(null);
+    setHasLoaded(true);
   }
 
   /** Sets token to API response from signup request */
+  //TODO: what is signupData
   async function signup(signUpData) {
     let token = await JoblyApi.signUp(signUpData);
     setToken(token);
   }
 
+  if (!hasLoaded) return <LoadingSpinner />;
+
   return (
     <userContext.Provider
-      value={{ currUser: currUser.data }}
+      value={{ currUser: currUser }}
     >
       <div className="App">
         <BrowserRouter>
           <NavBar logout={logout} />
-          <RouteList currUser={currUser.data} login={login} signup={signup} />
+
+          <RouteList
+            currUser={currUser}
+            login={login}
+            signup={signup}
+            />
+
         </BrowserRouter>
       </div>
     </userContext.Provider>
   );
 }
-//TODO: currUser -> userwrapper?
+
 
 export default App;
