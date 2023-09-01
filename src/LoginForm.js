@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 
-/** Searches jobs or companies based on passed filter
+/** Login form.
  *
- * Props: searchFilter that is passed down from parent
- *  ex. searchJob()
+ * Props: login function passed from parent.
  *
- * State: searchTerm
+ * State: formData
  *
- * JobList/CompanyList --> SearchForm
+ * ??? --> LoginForm
  */
 
 function LoginForm({ login }) {
@@ -36,14 +35,14 @@ function LoginForm({ login }) {
   return (
     <div className="LoginForm">
       <form onSubmit={login}>
+        <label for="username">Username </label>
         <input
-          label="Username"
           name="username"
           value={formData.username}
           onChange={handleChange}
         />
+          <label for="password">Password </label>
           <input
-          label="Password"
           name="password"
           value={formData.password}
           onChange={handleChange}

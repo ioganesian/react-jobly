@@ -10,14 +10,26 @@ import JobList from "./JobList";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 
-function RouteList() {
+function RouteList({ currUser, login, signup }) {
+  console.log(`USER in ROUTELIST: ${currUser}`);
   return (
     <div>
       <Routes>
 
         <Route path="/" element={<Homepage />} />
 
-        {user &&
+        {!currUser &&
+          <>
+            <Route
+              path="/login"
+              element={<LoginForm login={login} />} />
+            <Route
+              path="/signup"
+              element={<SignupForm signup={signup} />} />
+          </>
+        }
+
+        {currUser &&
           <>
             <Route
               path="/companies"
@@ -34,20 +46,11 @@ function RouteList() {
           </>
         }
 
-        {!user &&
-          <>
-            <Route path="/login" element={<LoginForm />} />
-
-            <Route path="/signup" element={<SignupForm />} />
-          </>
-        }
-
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
   );
 }
-
 
 export default RouteList;
 

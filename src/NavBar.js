@@ -1,11 +1,12 @@
-import React,{useContext} from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 import userContext from "./userContext";
 
 /** Navigation links for all pages.
  *
- * Props: None
+ * Props: logout
+ * onClick function for Logout link
  *
  * State: None
  *
@@ -13,7 +14,7 @@ import userContext from "./userContext";
  */
 
 function NavBar({ logout }) {
-  const { user } = useContext({ userContext });
+  const { currUser } = useContext(userContext);
 
   /** NavBar to return if no user logged in */
 
@@ -42,7 +43,7 @@ function NavBar({ logout }) {
             Jobs
           </Link>
           <Link to="/" onClick={logout}>
-            Logout {user.username}
+            Logout {currUser.username}
           </Link>
         </div>
     );
@@ -53,7 +54,7 @@ function NavBar({ logout }) {
        <Link to="/">
           Jobly
         </Link>
-      {user ? loggedInNavBar() : loggedOutNavBar()}
+      {currUser ? loggedInNavBar() : loggedOutNavBar()}
     </nav>
   )
 

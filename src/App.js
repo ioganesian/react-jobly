@@ -4,44 +4,58 @@ import { BrowserRouter } from "react-router-dom";
 import RouteList from "./RouteList";
 import NavBar from "./NavBar";
 import JoblyApi from "./api";
-import { useJwt } from "react-jwt";
 import decode from "jwt-decode";
 import userContext from "./userContext";
-import LoginForm from "./LoginForm"
-import SignupForm from "./SignupForm"
 
 /** Main Application with router
  *
  * Props:None
  *
- * State:None
+ * State:
+ * - currUser
+ * - token
  *
  *App --> Homepage
 */
 
 
 function App() {
-  const [user, setUser] = useState(null); //correct state?
-  const [token, setToken] = useState(null);
-
+  const [currUser, setCurrUser] = useState({ data: null });
+  const [token, setToken] = useState(JoblyApi.token);
+  // {
+  //   "user": {
+  //     "username": "user",
+  //     "firstName": "first",
+  //     "lastName": "last",
+  //     "email": "email@email.com",
+  //     "isAdmin": true,
+  //     "applications": []
+  //   }
+  // }
+  // console.log(token);
   useEffect(function getUserInfo() {
+    console.log(`ENTERED USEEFFECT`);
     async function getUser() {
       if (token) {
+        console.log(`USER token APP.JS: ${token}`);
         try {
           let { username } = decode(token);
           let user = await JoblyApi.getUserData(username);
-          setUser(user);
+          setCurrUser(user);
 
         } catch (error) {
           console.log("Error here APP.JS");
-          setUser(null);
+          setCurrUser({ data: null });
         }
       } else {
-        setUser(null);
+        console.log(`NO USER token APP.js: ${token}`);
+        setCurrUser({ data: null });
       }
     }
     getUser();
-  }, []);
+  }, [token]);
+
+  // console.log(user, token);
 
   async function login(loginData) {
     let token = await JoblyApi.login(loginData);
@@ -49,7 +63,7 @@ function App() {
   }
 
   async function logout() {
-    setUser(null);
+    setCurrUser({ data: null });
     setToken(null);
   }
 
@@ -58,12 +72,16 @@ function App() {
     setToken(token);
   }
 
+  console.log(`currUser: ${currUser}`);
+
   return (
-    <userContext.Provider value={{ user: user }}>
+    <userContext.Provider
+      value={{ currUser: currUser.data }}
+    >
       <div className="App">
         <BrowserRouter>
           <NavBar logout={logout} />
-          <RouteList user= {user} login={login} signup={signup}  />
+          <RouteList currUser={currUser.data} login={login} signup={signup} />
         </BrowserRouter>
       </div>
     </userContext.Provider>
