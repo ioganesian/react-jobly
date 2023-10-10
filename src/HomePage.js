@@ -15,10 +15,12 @@ function Homepage() {
   const { currUser } = useContext(userContext);
   return (
     <div className="Homepage">
-      <p className="Homepage-jobly">Jobly</p>
-      <p>All the jobs in one, convenient place.</p>
-      <div className="Homepage-user">
-        {currUser && <>Welcome Back, {currUser.username}!</>}
+      <div className="Homepage-banner">
+        <p className="Homepage-jobly">Jobly</p>
+        <p>All the jobs in one, convenient place.</p>
+        <div className="Homepage-user">
+          {currUser && <>Welcome Back, {currUser.username}!</>}
+        </div>
       </div>
     </div>
   );

@@ -1,14 +1,13 @@
 import React from "react";
 import "./JobCard.css";
 
-/**Renders a single job card
+/** Shows limited information about a job
  *
  * Props: {id, title, company, salary, equity }
  *
  * State: None
  *
  * JobCardList --> JobCard
- *
  */
 
 function JobCard({ id, title, company, salary, equity }) {

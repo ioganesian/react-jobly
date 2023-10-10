@@ -11,9 +11,8 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
  */
 
 class JoblyApi {
-  // Remember, the backend needs to be authorized with a token
-  // We're providing a token you can use to interact with the backend API
-  // MODIFY THIS TOKEN
+  // Backend needs to be authorized with a token
+  // Token you can use to interact with the backend API
   static token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
   "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
   "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
@@ -51,6 +50,7 @@ class JoblyApi {
    *
    * loginData = {username, password}
   */
+
   static async login(loginData){
     let res = await this.request(`auth/token`, loginData, "post")
     return res.token;
@@ -67,6 +67,7 @@ class JoblyApi {
 	 *"isAdmin": true
    * }
    */
+
   static async signUp(signUpData){
     let res = await this.request(`auth/register`, signUpData, "post")
     return res.token;
@@ -77,6 +78,7 @@ class JoblyApi {
    * data : {username, firstName, lastName, email}
    *
    */
+
   static async editProfile(username, data){
     let res = await this.request(`users/${username}`, data, "patch")
     return res.user;
@@ -87,6 +89,7 @@ class JoblyApi {
    * res.company is { handle, name, description, numEmployees, logoUrl, jobs }
    *   where jobs is [{ id, title, salary, equity }, ...]
   */
+
   static async getCompany(handle) {
     let res = await this.request(`companies/${handle}`);
     // console.log()
@@ -98,6 +101,7 @@ class JoblyApi {
    * res.jobs= {jobs:
    * [{ id, title, salary, equity, companyHandle, companyName }]}
    */
+
   static async getJobs(title) {
     let res = await this.request(`jobs`, { title });
     return res.jobs;
@@ -108,6 +112,7 @@ class JoblyApi {
    * res.companies= { companies:
    * [ { handle, name, description, numEmployees, logoUrl }, ...] }
    */
+
   static async getCompanies(nameLike) {
     let res = await this.request(`companies`, { nameLike });
     return res.companies;
