@@ -5,14 +5,12 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 /** API Class.
  *
  * Static class tying together methods used to get/send to to the API.
- * There shouldn't be any frontend-specific stuff here, and there shouldn't
- * be any API-aware stuff elsewhere in the frontend.
  *
  */
 
 class JoblyApi {
   // Backend needs to be authorized with a token
-  // Token you can use to interact with the backend API
+  // Token you can use to interact with the backend API:
   static token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
   "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
   "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
@@ -39,7 +37,7 @@ class JoblyApi {
 
   /** Get user data by username.
    *
-   * res.user = { username, firstName, lastName, isAdmin, jobs }
+   * returns res.user: { username, firstName, lastName, isAdmin, jobs }
   */
   static async getUserData(username){
     let res = await this.request(`users/${username}`);

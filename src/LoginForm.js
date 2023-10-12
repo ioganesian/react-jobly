@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 
-/** Login form.
+/** Login form
+ *
+ * Shows form and manages state update on change
  *
  * Props: login function passed from parent
  *
  * State: formData
  *
- * App --> RouteList --> LoginForm
+ * RouteList --> LoginForm
  */
 
 function LoginForm({ login }) {
@@ -17,7 +19,7 @@ function LoginForm({ login }) {
     username: "",
     password: "",
   });
-  const [errors, setErrors] = useState([]);
+  const [formErrors, setFormErrors] = useState([]);
 
   /** Update form */
   function handleChange(evt) {
@@ -35,10 +37,9 @@ function LoginForm({ login }) {
       await login(formData);
       navigate("/")
     } catch (errs) {
-      setErrors(errs);
+      setFormErrors(errs);
     }
   }
-  //TODO: display errs
 
   return (
     <div className="LoginForm">
@@ -56,7 +57,16 @@ function LoginForm({ login }) {
           value={formData.password}
           onChange={handleChange}
         />
-        <button onClick={handleSubmit}>Submit</button>
+
+        {/* {formErrors.length
+          ? <Alert type="danger" messages={formErrors} />
+          : null} */}
+
+        <div className="d-grid">
+          <button className="btn btn-primary" onClick={handleSubmit}>
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

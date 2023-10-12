@@ -1,7 +1,6 @@
 .LoginForm {
-  /* border: 3px solid lime; */
-  /* display: flex; */
-  /* flex-direction: column; */
+  display: flex;
+  flex-direction: column;
   width: 50%;
   margin: 3em auto;
 }
