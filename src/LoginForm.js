@@ -51,19 +51,18 @@ function LoginForm({ login }) {
   return (
     <div className="LoginForm">
       <div className="overlay"></div>
-      <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+      <div className="container col-sm-6 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
 
         <div className="card LoginForm-card">
         <button className="LoginForm-close" onClick={handleCloseClick}>X</button>
-          <div className="card-body">
+          <div className="card-body mt-2">
 
-          <h4 className="mb-2 LoginForm-h4">Log in</h4>
-            <form onSubmit={handleSubmit} className="LoginForm-form">
+          <h4 className="mb-2 LoginForm-h4">Log In</h4>
+            <form className="LoginForm-form" onSubmit={handleSubmit}>
               <div className="form-group">
-                <label htmlFor="username">Username</label>
+                <label className="form-label">Username</label>
                 <input
                   type="text"
-                  id="username"
                   className="form-control"
                   name="username"
                   value={formData.username}
@@ -71,10 +70,9 @@ function LoginForm({ login }) {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="password">Password</label>
+                <label className="form-label">Password</label>
                 <input
                   type="password"
-                  id="password"
                   className="form-control"
                   name="password"
                   value={formData.password}
@@ -87,7 +85,7 @@ function LoginForm({ login }) {
               ) : null}
 
               <div className="text-center mt-3">
-                <button type="submit" className="btn btn-primary">
+                <button className="btn btn-primary" onClick={handleSubmit}>
                   Submit
                 </button>
               </div>

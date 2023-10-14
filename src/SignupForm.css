@@ -1,36 +1,38 @@
-.SignupForm {
-  /* border: 3px solid lime; */
-  /* display: flex; */
-  /* flex-direction: column; */
-  width: 50%;
-  margin: 3em auto;
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
-.SignupForm-signup {
-  font-size: 32px;
-  color: rgba(255, 255, 255, 0.903);
-  text-shadow: 5px 5px 5px black;
-  margin-bottom: .4em;
+.SignupForm-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  z-index: 2;
+  margin-top: 5em;
 }
 
-.SignupForm-form {
-  background-color: white;
-  color: black;
-  display: flex;
-  flex-direction: column;
-  padding: .5em 5em;
-  border-radius: 5px;
+.btn-primary {
+  width: 60%;
 }
 
-.SignupForm input {
-  padding: .5em;
+.btn-primary:hover {
+  background-color: #0056b3;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
-.SignupForm button {
-  background-color: rgb(34, 82, 239);
-  color: white;
-  border-radius: 5px;
-  border: 0;
-  margin: .7em;
-  padding: .5em;
+.SignupForm-h4 {
+  font-weight: bold;
+}
+
+.SignupForm-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  border: none;
+  background: none;
 }
