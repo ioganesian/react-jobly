@@ -26,7 +26,7 @@ function SearchForm({ searchFilter }) {
   }
 
   return (
-    <div className="SearchForm">
+    <div className="SearchForm mb-4">
       <form className="SearchForm-form" onSubmit={handleSubmit}>
         <input
           name="searchTerm"

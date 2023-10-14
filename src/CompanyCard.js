@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom"
 import "./CompanyCard.css";
 
-/**Renders a single company card
+/** Displays individual company info
  *
  * Props: {handle, name, description, logo}
  *
@@ -13,13 +13,14 @@ import "./CompanyCard.css";
  */
 
 function CompanyCard({ handle, name, description, logo }) {
+
   return (
     <Link className="CompanyCard" to={`/companies/${handle}`}>
     <div className="CompanyCard-card">
       {name}
       {description}
-      <div className="CompanyCard-img">
-        <img src={logo} alt={name} />
+      <div className="CompanyCard-img float-end ms-5">
+        {logo && <img src={logo} alt={name} />}
       </div>
     </div>
     </Link>

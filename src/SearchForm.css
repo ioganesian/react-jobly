@@ -1,9 +1,6 @@
 .SearchForm {
-  /* border: 3px solid lime; */
-  /* display: flex; */
-  /* flex-direction: column; */
   width: 50%;
-  margin: 3em auto;
+  margin: 2em auto;
   border-radius: 5px;
 }
 
@@ -17,11 +14,12 @@
 .SearchForm-form {
   color: black;
   padding: .5em 5em 0;
-  border-radius: 5px;
 }
 
 .SearchForm input {
   padding: .3em;
+  border-radius: 5px;
+  border: none;
 }
 
 .SearchForm button {
@@ -31,4 +29,10 @@
   border: 0;
   margin: .7em;
   padding: .5em;
+}
+
+.SearchForm button:hover {
+  background-color: #0056b3;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
