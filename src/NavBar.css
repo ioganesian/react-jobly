@@ -12,5 +12,9 @@
 }
 
 .NavBar a:visited {
-  color: rgb(169, 169, 169);
+  color: rgb(76, 76, 76);
+}
+
+.NavBar a:hover {
+  color: #0056b3;
 }

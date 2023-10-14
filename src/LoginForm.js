@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Alert from "./Alert";
 import "./LoginForm.css";
 
 /** Login form
@@ -30,12 +31,18 @@ function LoginForm({ login }) {
     }));
   }
 
+  /** Redirect to home page on form close */
+
+  function handleCloseClick() {
+    navigate("/");
+  }
+
   /** Call parent function to filter */
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
       await login(formData);
-      navigate("/")
+      navigate("/");
     } catch (errs) {
       setFormErrors(errs);
     }
@@ -43,33 +50,53 @@ function LoginForm({ login }) {
 
   return (
     <div className="LoginForm">
-      <div className="LoginForm-login">Log in</div>
-      <form onSubmit={handleSubmit} className="LoginForm-form">
-        <label>Username</label>
-        <input
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-        <label>Password</label>
-        <input
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
+      <div className="overlay"></div>
+      <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
 
-        {/* {formErrors.length
-          ? <Alert type="danger" messages={formErrors} />
-          : null} */}
+        <div className="card LoginForm-card">
+        <button className="LoginForm-close" onClick={handleCloseClick}>X</button>
+          <div className="card-body">
 
-        <div className="d-grid">
-          <button className="btn btn-primary" onClick={handleSubmit}>
-            Submit
-          </button>
+          <h4 className="mb-2 LoginForm-h4">Log in</h4>
+            <form onSubmit={handleSubmit} className="LoginForm-form">
+              <div className="form-group">
+                <label htmlFor="username">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  className="form-control"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  className="form-control"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+              </div>
+
+              {formErrors.length ? (
+                <Alert type="danger" messages={formErrors} />
+              ) : null}
+
+              <div className="text-center mt-3">
+                <button type="submit" className="btn btn-primary">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 }
 
-export default LoginForm;
+export default LoginForm;;
