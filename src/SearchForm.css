@@ -23,12 +23,12 @@
 }
 
 .SearchForm button {
-  background-color: rgb(34, 82, 239);
+  background-color: rgb(78, 110, 215);
   color: white;
   border-radius: 5px;
   border: 0;
   margin: .7em;
-  padding: .5em;
+  padding: .3em;
 }
 
 .SearchForm button:hover {

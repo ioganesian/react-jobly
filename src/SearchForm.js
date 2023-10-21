@@ -32,7 +32,7 @@ function SearchForm({ searchFilter }) {
           name="searchTerm"
           value={searchTerm}
           onChange={handleChange}
-          placeholder="Enter search term..." />
+          placeholder="Search" />
         <button type="submit">Submit</button>
       </form>
     </div>
