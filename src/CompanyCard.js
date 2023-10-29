@@ -31,7 +31,8 @@ function CompanyCard({ handle, name, description, logo }) {
     <Link className="CompanyCard" to={`/companies/${handle}`}>
       <div className="CompanyCard-card">
         <div className="CompanyCard-content">
-          {name}
+          <strong>{name}</strong>
+          {' '}
           {description}
         </div>
         <div className="CompanyCard-logo">
