@@ -12,20 +12,6 @@ import "./CompanyCard.css";
  *
  */
 
-// function CompanyCard({ handle, name, description, logo }) {
-//   return (
-//     <Link className="CompanyCard" to={`/companies/${handle}`}>
-//       <div className="CompanyCard-card">
-//         {name}
-//         {description}
-//         <div className="CompanyCard-img float-end ms-5">
-//           {logo && <img src={logo} alt={name} />}
-//         </div>
-//       </div>
-//     </Link>
-//   );
-// }
-
 function CompanyCard({ handle, name, description, logo }) {
   return (
     <Link className="CompanyCard" to={`/companies/${handle}`}>
