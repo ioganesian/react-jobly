@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import "./CompanyCard.css";
 
 /** Displays individual company info
@@ -12,17 +12,32 @@ import "./CompanyCard.css";
  *
  */
 
-function CompanyCard({ handle, name, description, logo }) {
+// function CompanyCard({ handle, name, description, logo }) {
+//   return (
+//     <Link className="CompanyCard" to={`/companies/${handle}`}>
+//       <div className="CompanyCard-card">
+//         {name}
+//         {description}
+//         <div className="CompanyCard-img float-end ms-5">
+//           {logo && <img src={logo} alt={name} />}
+//         </div>
+//       </div>
+//     </Link>
+//   );
+// }
 
+function CompanyCard({ handle, name, description, logo }) {
   return (
     <Link className="CompanyCard" to={`/companies/${handle}`}>
-    <div className="CompanyCard-card">
-      {name}
-      {description}
-      <div className="CompanyCard-img float-end ms-5">
-        {logo && <img src={logo} alt={name} />}
+      <div className="CompanyCard-card">
+        <div className="CompanyCard-content">
+          {name}
+          {description}
+        </div>
+        <div className="CompanyCard-logo">
+          {logo && <img src={logo} alt={name} />}
+        </div>
       </div>
-    </div>
     </Link>
   );
 }

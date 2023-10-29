@@ -1,4 +1,4 @@
-.CompanyCard {
+/* .CompanyCard {
   margin: auto;
   display: flex;
   align-items: start;
@@ -18,6 +18,39 @@
 
 .CompanyCard-card {
   display: flex;
+}
+
+.CompanyCard img {
+  height: 50px;
+  width: 50px;
+} */
+
+.CompanyCard {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  margin: 2em auto;
+  padding: 1em;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: black;
+  background-color: white;
+  text-decoration: none;
+}
+
+.CompanyCard:hover {
+  color: rgb(69, 69, 237);
+}
+
+.CompanyCard-card {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.CompanyCard-logo {
+  display: flex;
+  align-items: center;
 }
 
 .CompanyCard img {
