@@ -12,8 +12,8 @@ class JoblyApi {
   // Backend needs to be authorized with a token
   // Token for interacting with the API:
   static token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-  "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-  "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);
@@ -39,7 +39,7 @@ class JoblyApi {
    *
    * returns res.user: { username, firstName, lastName, isAdmin, jobs }
   */
-  static async getUserData(username){
+  static async getUserData(username) {
     let res = await this.request(`users/${username}`);
     return res.user;
   }
@@ -51,25 +51,25 @@ class JoblyApi {
    * returns token
   */
 
-  static async login(loginData){
-    let res = await this.request(`auth/token`, loginData, "post")
+  static async login(loginData) {
+    let res = await this.request(`auth/token`, loginData, "post");
     return res.token;
   }
 
   /** Register new user.
    *
    * signUpData = {
-	 *"username": "user",
-	 *"password": "password",
-	 *"firstName": "first",
-	 *"lastName": "last",
-	 *"email": "email@email.com",
-	 *"isAdmin": true
+   *"username": "user",
+   *"password": "password",
+   *"firstName": "first",
+   *"lastName": "last",
+   *"email": "email@email.com",
+   *"isAdmin": true
    * }
    */
 
-  static async signUp(signUpData){
-    let res = await this.request(`auth/register`, signUpData, "post")
+  static async signUp(signUpData) {
+    let res = await this.request(`auth/register`, signUpData, "post");
     return res.token;
   }
 
@@ -79,8 +79,8 @@ class JoblyApi {
    *
    */
 
-  static async editProfile(username, data){
-    let res = await this.request(`users/${username}`, data, "patch")
+  static async editProfile(username, data) {
+    let res = await this.request(`users/${username}`, data, "patch");
     return res.user;
   }
 
@@ -107,6 +107,12 @@ class JoblyApi {
     return res.jobs;
   }
 
+  /** Apply to a job */
+
+  static async applyToJob(username, id) {
+    await this.request(`users/${username}/jobs/${id}`, {}, "post");
+  }
+
   /** Get array of companies with optional nameLike filter
    *
    * res.companies= { companies:
@@ -116,6 +122,13 @@ class JoblyApi {
   static async getCompanies(nameLike) {
     let res = await this.request(`companies`, { nameLike });
     return res.companies;
+  }
+
+  /** Save user profile page. */
+
+  static async saveProfile(username, data) {
+    let res = await this.request(`users/${username}`, data, "patch");
+    return res.user;
   }
 
 }
