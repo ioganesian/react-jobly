@@ -31,7 +31,7 @@ function App() {
   const [currUser, setCurrUser] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_KEY);
   const [hasLoaded, setHasLoaded] = useState(false);
-  const [applicationIds, setApplicationIds] = useState(new Set([]));
+  // const [applicationIds, setApplicationIds] = useState(new Set([]));
 
   /** Checks state on token update to set current user and hasLoaded */
   useEffect(function fetchUserDataOnTokenChange() {
@@ -43,7 +43,7 @@ function App() {
           let user = await JoblyApi.getUserData(username);
           setCurrUser(user);
           setHasLoaded(true);
-          setApplicationIds(new Set(user.applications));
+          // setApplicationIds(new Set(user.applications));
         } catch (error) {
           setCurrUser(null);
           setHasLoaded(true);
@@ -66,7 +66,7 @@ function App() {
 
   /** Clears currUser and hasLoaded on logout */
   async function logout() {
-    setApplicationIds(new Set([]));
+    // setApplicationIds(new Set([]));
     setCurrUser(null);
     setToken(null);
   }
@@ -88,16 +88,17 @@ function App() {
 
   /** Checks if job has been applied for */
 
-  function hasAppliedToJob(id) {
-    return applicationIds.has(id);
-  }
+  // function hasAppliedToJob(id) {
+  //   return applicationIds.has(id);
+  // }
 
   /** Apply to a job: make API call and update set of application IDs */
-  function applyToJob(id) {
-    if (hasAppliedToJob(id)) return;
-    JoblyApi.applyToJob(currentUser.username, id);
-    setApplicationIds(new Set([...applicationIds, id]));
-  }
+
+  // function applyToJob(id) {
+  //   if (hasAppliedToJob(id)) return;
+  //   JoblyApi.applyToJob(currentUser.username, id);
+  //   setApplicationIds(new Set([...applicationIds, id]));
+  // }
 
   if (!hasLoaded) return <LoadingSpinner />;
 

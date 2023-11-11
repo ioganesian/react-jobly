@@ -79,10 +79,10 @@ class JoblyApi {
    *
    */
 
-  static async editProfile(username, data) {
-    let res = await this.request(`users/${username}`, data, "patch");
-    return res.user;
-  }
+  // static async editProfile(username, data) {
+  //   let res = await this.request(`users/${username}`, data, "patch");
+  //   return res.user;
+  // }
 
   /** Get details on a company by handle.
    *
@@ -109,9 +109,9 @@ class JoblyApi {
 
   /** Apply to a job */
 
-  static async applyToJob(username, id) {
-    await this.request(`users/${username}/jobs/${id}`, {}, "post");
-  }
+  // static async applyToJob(username, id) {
+  //   await this.request(`users/${username}/jobs/${id}`, {}, "post");
+  // }
 
   /** Get array of companies with optional nameLike filter
    *
@@ -126,10 +126,10 @@ class JoblyApi {
 
   /** Save user profile page. */
 
-  static async saveProfile(username, data) {
-    let res = await this.request(`users/${username}`, data, "patch");
-    return res.user;
-  }
+  // static async saveProfile(username, data) {
+  //   let res = await this.request(`users/${username}`, data, "patch");
+  //   return res.user;
+  // }
 
 }
 

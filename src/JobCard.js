@@ -13,22 +13,22 @@ import userContext from "./userContext";
 
 function JobCard({ id, title, company, salary, equity }) {
 
-  const { hasAppliedToJob, applyToJob } = useContext(userContext);
-  const [applied, setApplied] = useState();
+  // const { hasAppliedToJob, applyToJob } = useContext(userContext);
+  // const [applied, setApplied] = useState();
 
-  useEffect(
-    function updateAppliedStatus() {
-      setApplied(hasAppliedToJob(id));
-    },
-    [id, hasAppliedToJob]
-  );
+  // useEffect(
+  //   function updateAppliedStatus() {
+  //     setApplied(hasAppliedToJob(id));
+  //   },
+  //   [id, hasAppliedToJob]
+  // );
 
   /** Apply for a job */
-  async function handleApply(evt) {
-    if (hasAppliedToJob(id)) return;
-    applyToJob(id);
-    setApplied(true);
-  }
+  // async function handleApply(evt) {
+  //   if (hasAppliedToJob(id)) return;
+  //   applyToJob(id);
+  //   setApplied(true);
+  // }
 
   return (
     <div className="JobCard">
@@ -36,13 +36,13 @@ function JobCard({ id, title, company, salary, equity }) {
       <p>{company}</p>
       <p>Salary: {salary}</p>
       <p>Equity: {equity}</p>
-      <button
+      {/* <button
           className="btn btn-danger fw-bold text-uppercase float-end"
           onClick={handleApply}
           disabled={applied}
         >
           {applied ? "Applied" : "Apply"}
-        </button>
+        </button> */}
     </div>
   );
 }
