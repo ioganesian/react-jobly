@@ -1,5 +1,7 @@
 # Jobly - README
 
+** Currently adding application functionality, WIP
+
 [Pairs with the Express backend](https://github.com/igoroganesian/express-jobly)
 
 ### `npm start`
